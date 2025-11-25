@@ -1,121 +1,158 @@
-# Revenue-Sales-BI-System
+# 📊 End-to-End Revenue BI System
 
----
-## ⭐ 1. Project Folder Structure
-
-<img width="631" height="563" alt="image" src="https://github.com/user-attachments/assets/7e0d5a57-f596-4a98-877c-6b0d3cb2b7a2" />
+(SQL • Power BI/Looker Studio • Python • Excel • PPT)
 
 ---
 
-## ⭐ 2. Mock Database Schema (Postgres or BigQuery)
-
-Design it LIKE a real SaaS revenue system:
-
-🧩 Tables
-i) customers
-- customer_id
-- signup_date
-- industry
-- company_size
-- sales_rep_id
-
-ii) subscriptions
-- subscription_id
-- customer_id
-- start_date
-- end_date
-- plan (Basic/Pro/Enterprise)
-- mrr
-
-iii) revenue_daily
-- date
-- customer_id
-- revenue
-
-iv) sales_pipeline
-- opportunity_id
-- customer_id
-- stage (Prospect → Closed Won/Lost)
-- amount
-- created_at
-- closed_at
-
-v) sales_team
-- sales_rep_id
-- rep_name
-- region
+This project simulates how a real Business Intelligence (BI) Analyst works inside a Revenue Analytics team. It covers SQL analysis, dashboard creation, on-call support, documentation, and simple automation — directly matching BI job descriptions.
 
 ---
 
-## ⭐ 3. SQL Queries to Build 
+## ✅ 1. Project Overview
 
-🟦 i. Daily Revenue
-SELECT date, SUM(revenue) AS total_revenue
-FROM revenue_daily
-GROUP BY date
-ORDER BY date;
+This system analyzes a mock SaaS company’s revenue, churn, and sales pipeline.
 
-🟦 ii. MRR Churn
-SELECT
-    DATE_TRUNC('month', end_date) AS month,
-    SUM(mrr) AS churned_mrr
-FROM subscriptions
-WHERE end_date IS NOT NULL
-GROUP BY 1
-ORDER BY 1;
+You will:
+- Query revenue data using SQL
+- Build a dashboard (Power BI / Looker Studio)
+- Create a Slack/JIRA-style “BI request workflow”
+- Automate simple daily checks
+- Document KPIs and definitions
+- Generate weekly reporting slides
 
-🟦 iii. Pipeline → Win Conversion
-SELECT
-    sales_rep_id,
-    COUNT(*) FILTER (WHERE stage = 'Closed Won') * 100.0 /
-    COUNT(*) AS win_rate
-FROM sales_pipeline
-GROUP BY sales_rep_id;
+This makes the project a realistic BI Analyst portfolio piece.
 
-🟦 iv. Sales Rep Performance
-SELECT s.rep_name, COUNT(*) AS closed_won, SUM(amount) AS revenue_won
-FROM sales_pipeline p
-JOIN sales_team s USING(sales_rep_id)
-WHERE p.stage='Closed Won'
-GROUP BY s.rep_name;
+---
 
-🟦 v. Upsell & Cross-Sell
-SELECT
-    c.customer_id,
-    COUNT(subscription_id) AS plans_owned,
-    SUM(mrr) AS total_mrr
-FROM subscriptions c
-GROUP BY 1;
+## 📦 2. Project Structure
 
-Create 8–10 SQL queries total.
+<img width="645" height="194" alt="image" src="https://github.com/user-attachments/assets/144e6692-d9e5-4ce1-b79e-c78a41ec15e1" />
 
---- 
+---
 
-## ⭐ 4. Dashboard (Looker Imitation)
-Build in:
-✔ Looker Studio (free)
-✔ Power BI (more professional)
+## 🧩 3. Data Model (High-Level)
 
-Dashboard Sections:
+You will work with five core tables:
+- customers – customer details
+- subscriptions – plan + MRR
+- revenue_daily – daily revenue
+- sales_pipeline – opportunities + stages
+- sales_team – rep info
 
-1️⃣ Revenue Overview
-- Daily revenue
+This is structured in a simple star schema.
+
+---
+
+## 📘 4. SQL Analytics Included
+
+You will build queries for:
+
+- Daily Revenue
+- Monthly Recurring Revenue (MRR)
+- Churn
+- Pipeline → Win Conversion
+- Sales Rep Performance
+- Upsell / Cross-sell
+- Customer segmentation
+
+These queries power the dashboard and weekly reporting.
+
+---
+
+## 📊 5. Dashboard (Looker-Style)
+
+The dashboard contains:
+
+Revenue KPIs
+- Daily revenue trend
 - MRR trend
-- Churn trend
-- Net new MRR
-
-2️⃣ Sales Performance
+- Churn analysis
+  
+Sales KPIs
 - Win rate
-- Pipeline stage funnel
 - Sales rep leaderboard
-- Regional performance
+- Pipeline funnel
 
-3️⃣ Customer Insights
-- Industry heatmap
-- Company size segmentation
-- Plan distribution
-
-This mirrors real Looker dashboards used in BI teams.
+Built using Power BI or Looker Studio.
 
 ---
 
+## 🤖 6. Automation Scripts
+
+Simple Python scripts simulate real BI workflows:
+
+simulate_data_requests.py
+- Mimics Slack/JIRA BI requests
+- Returns SQL outputs
+- Logs interactions
+
+monitoring_script.py
+- Detects missing data
+- Flags revenue spikes/drops
+- Creates daily alert messages
+
+This demonstrates basic data operations automation.
+
+---
+
+## 📄 7. Documentation
+
+The documentation/ folder includes:
+- Data Dictionary
+- Metric Definitions (MRR, Churn, ARR, Win Rate)
+- Naming Conventions
+- Star Schema Diagram
+- KPI Tree
+
+This matches real BI governance work.
+
+---
+
+## 🖼 8. Weekly Reporting (PPT)
+
+A weekly report summarizing:
+
+- KPI changes
+- Churn/Revenue movements
+- Sales performance
+- Commentary & insights
+
+Example insight:
+“MRR dipped by 3.2% due to higher churn in SMB customers.”
+
+---
+
+## 🔧 9. Tools Used
+
+- SQL (Postgres/BigQuery)
+- Power BI or Looker Studio
+- Python
+- Excel
+- PowerPoint
+- GitHub
+
+---
+
+## 🚀 10. How to Run This Project
+
+- Download the mock CSV files
+- Import them into Postgres/BigQuery
+- Run SQL queries from /sql
+- Build dashboard using /dashboards
+- Run Python scripts from /automation
+- Export insights into weekly PPT
+
+---
+
+## 🎯 11. Purpose of This Project
+
+This project is designed to showcase:
+- BI analysis
+- Dashboarding
+- On-call support workflows
+- SQL + Python
+- Automation
+- Metric governance
+- Reporting
+
+Everything aligns directly with real BI Analyst responsibilities.
