@@ -1,0 +1,11 @@
+customer_id,signup_date,industry,company_size,sales_rep_id
+C001,2023-01-15,Software,SMB,R01
+C002,2023-02-10,Finance,Mid,R02
+C003,2023-02-22,Healthcare,Enterprise,R03
+C004,2023-03-01,Retail,SMB,R04
+C005,2023-03-14,Software,Mid,R02
+C006,2023-03-20,Education,SMB,R01
+C007,2023-04-02,Finance,Enterprise,R03
+C008,2023-04-11,Healthcare,Mid,R04
+C009,2023-04-19,Retail,SMB,R01
+C010,2023-05-03,Software,Enterprise,R02
