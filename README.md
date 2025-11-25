@@ -4,7 +4,7 @@
 
 ---
 
-This project simulates how a real Business Intelligence (BI) Analyst works inside a Revenue Analytics team. It covers SQL analysis, dashboard creation, on-call support, documentation, and simple automation — directly matching BI job descriptions.
+This project simulates how a real Business Intelligence (BI) Analyst works inside a Revenue Analytics team. It covers SQL analysis, dashboard creation, on-call support, documentation, and simple automation.
 
 ---
 
